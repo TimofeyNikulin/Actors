@@ -11,3 +11,4 @@ migrate = Migrate(app, db)
 
 
 from .routes.index import index
+from .routes.user import sign_up
