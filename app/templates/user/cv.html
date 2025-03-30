@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/styleCV.css">
+{% endblock %}
+
+{% block content %}
+    <div class="Form">
+        <form action="" method="post">
+            <div>
+                <div>
+                    {{ form.csrf_token }}
+                </div>
+                {% for field in form if field.name != "csrf_token" %}
+                    <div class="input">
+                        <p>{{ field.label() }}</p>
+                        <p>
+                            {{ field() }}
+                            {% for error in field.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </p>
+                    </div>
+                {% endfor %}    
+            </div>
+            <input type="submit" value="Создать резюме" class="loginBtn">
+        </form>    
+    </div>
+{% endblock %}

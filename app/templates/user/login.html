@@ -23,7 +23,6 @@
                         </p>
                     </div>
                 {% endfor %}
-                <input type="submit" value="Зарегистрироваться">
             </form>    
         </div>
         <div class="company form hidden">
@@ -33,7 +32,9 @@
                 </div>
                 {% for field in form_company if field.name != "csrf_token" %}
                     <div class="input">
-                        <p>{{ field.label() }}</p>
+                        {% if field.label().text != "Войти" %}
+                            <p>{{ field.label() }}</p>  
+                        {% endif %}
                         <p>
                             {{ field() }}
                             {% for error in field.errors %}
@@ -42,9 +43,8 @@
                         </p>
                     </div>
                 {% endfor %}
-                <input type="submit" value="Зарегистрироваться">
             </form>    
-        </div>    
+        </div>
     </div>
 {% endblock %}
 

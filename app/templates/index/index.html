@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if actual_user == "u" %}
+        {% for vacancy in vacancies %}
+            <a href="vacancy/{{ vacancy.id }}">
+                <div>
+                    <h1>{{ vacancy.title_of_vacancy }}</h1>
+                    <p>{{ vacancy.description_of_vacancy }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    {% elif actual_user == "c" %}
+        <h1>{{ user.companyname }}</h1>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        {% if user.type == "u" %}
+            <h1>{{ user.surname }} {{ user.username }} {{ user.patronymic }}</h1>
+            <h3>{{ user.email }}</h3>
+            {% if cv %}
+                <p>{{ cv.body }}</p>
+                <p>{{ cv.link }}</p>
+            {% else %}
+                <a href="{{ url_for('create_cv') }}">
+                    <p>Добавить резюме</p>
+                </a>
+            {% endif %}
+        {% elif user.type == "c" %}
+            <h1>{{ user.companyname }}</h1>
+            <a href="{{ url_for('create_vacancy') }}">
+                <p>Добавить вакансию</p>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

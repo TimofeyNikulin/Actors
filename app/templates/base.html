@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
+    <link rel="stylesheet" href="../static/css/style.css">
     {% block head %}{% endblock %}
+    <title>{{ title }}</title>
 </head>
 <body>
-    <h1>Hello, world</h1>
-    {% block content %}{% endblock %}
-    
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}"><h1>Актерский состав</h1></a>
+            <div>
+                {% if user %}
+                    <a href="{{ url_for('home') }}"><p>Личный кабинет</p></a>
+                    <a href="{{ url_for('logout') }}"><p>Выйти</p></a>
+                {% else %}
+                    <a href="{{ url_for('sign_up') }}"><p>Регистрация</p></a>
+                    <a href="{{ url_for('login_user_or_company') }}"><p>Войти</p></a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
